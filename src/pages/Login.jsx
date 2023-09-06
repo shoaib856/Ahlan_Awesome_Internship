@@ -1,14 +1,23 @@
 import styles from "../Styles/form.module.css"
 import FormControl from "../FormControl.jsx";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {login} from "../Redux/index.js";
 
 const Login = () => {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const dispatch = useDispatch()
     const fields = [{
         id: "email", label: "email", type: "email", placeholder: "email@example.com",
+        fieldState: email, setField: setEmail
     }, {
         id: "password", label: "password", type: "password", placeholder: "password",
+        fieldState: password, setField: setPassword
     }
-
     ]
+
+
     return (<>
         <div className={styles.container}>
             <div className={styles["image-container"]}>
@@ -30,7 +39,7 @@ const Login = () => {
                 <span>don&#39;t have an account? <button className={styles.link}>create now</button></span>
                 <form className={styles.form}>
                     {fields.map(field => {
-                        return <FormControl key={field.id} field={field} />
+                        return <FormControl key={field.id} field={field}/>
                     })}
 
                     <label className={styles["remember-me"]}>
@@ -39,7 +48,11 @@ const Login = () => {
                     </label>
 
 
-                    <button className={styles.button} type={"submit"}>login</button>
+                    <button onClick={(e) => {
+                        e.preventDefault()
+                        dispatch({...login(), payload: {email, password}})
+                    }} className={styles.button} type={"submit"}>login
+                    </button>
                 </form>
 
                 <div style={{marginTop: "1rem"}}>

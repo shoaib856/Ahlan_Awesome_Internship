@@ -1,15 +1,18 @@
-import Register from "./pages/Register.jsx";
+import {Navbar} from "./components/Navbar.jsx";
+import {useSelector} from "react-redux";
 import Login from "./pages/Login.jsx";
-import RecoverPassword from "./pages/RecoverPassword.jsx";
+import {Footer} from "./components/Footer.jsx";
 
 function App() {
+    const loggedIn = useSelector(state => state.email)
     return (
         <>
-            <Register/>
-            <Login/>
-            <RecoverPassword/>
-        </>
-    )
+            <Navbar/>
+            <div className="container">
+                {loggedIn ? <h1>logged in</h1> : <Login/>}
+            </div>
+            <Footer/>
+        </>)
 }
 
 export default App
