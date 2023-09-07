@@ -1,8 +1,8 @@
 import styles from "../Styles/form.module.css"
-import FormControl from "../FormControl.jsx";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
-import {login} from "../Redux/index.js";
+import FormControl from "../components/FormControl.jsx";
+import {useDispatch} from "react-redux";
+import {useState} from "react";
+import {login} from "../redux-toolkit/login/loginSlice.js";
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -50,7 +50,7 @@ const Login = () => {
 
                     <button onClick={(e) => {
                         e.preventDefault()
-                        dispatch({...login(), payload: {email, password}})
+                        dispatch(login({email, password}))
                     }} className={styles.button} type={"submit"}>login
                     </button>
                 </form>

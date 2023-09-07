@@ -4,7 +4,7 @@ import Login from "./pages/Login.jsx";
 import {Footer} from "./components/Footer.jsx";
 
 function App() {
-    const loggedIn = useSelector(state => state.email)
+    const loggedIn = useSelector(state => state.login.email)
     return (
         <>
             <Navbar/>

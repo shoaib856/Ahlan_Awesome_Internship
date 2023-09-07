@@ -1,4 +1,4 @@
-import styles from "./Styles/form.module.css";
+import styles from "../Styles/form.module.css";
 import propTypes from "prop-types"
 
 const FormControl = ({field}) => {

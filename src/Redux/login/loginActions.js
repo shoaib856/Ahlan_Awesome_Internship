@@ -1,12 +1,11 @@
 import {LOGIN} from "./loginType.js";
 
-export const login = () => {
+export const login = (email = "", password = "") => {
     return {
         type: LOGIN,
         payload: {
-            email: "",
-            password: ""
-
+            email,
+            password
         }
     }
 }

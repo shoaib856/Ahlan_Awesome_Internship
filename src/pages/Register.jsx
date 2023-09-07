@@ -1,5 +1,5 @@
 import styles from "../Styles/form.module.css"
-import FormControl from "../FormControl.jsx";
+import FormControl from "../components/FormControl.jsx";
 
 const Register = () => {
     const fields = [{
