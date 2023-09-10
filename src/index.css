@@ -1,25 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap");
 
 * {
-    font-family: 'Oswald', sans-serif;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    transition: all 0.3s ease-in-out;
+  font-family: "Oswald", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+}
+
+main {
+  min-height: calc(100vh - 184px);
+  display: flex;
+  justify-content: center;
+    align-items: center;
+  flex-direction: column;
 }
 
 .container {
-    padding: 0 1rem;
-    min-height: 20rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: 0 1rem;
+  min-height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 footer {
-    padding: 2rem;
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    background: rgba(168, 223, 200, 0.5);
+  padding: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  background: rgba(168, 223, 200, 1);
+}
+
+::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
 }

@@ -1,24 +1,39 @@
-import styles from "../Styles/Navbar.module.css"
-import formStyles from "../Styles/form.module.css"
-import {useDispatch, useSelector} from "react-redux";
-import {logout} from "../redux-toolkit/login/loginSlice.js";
+import styles from "../Styles/Navbar.module.css";
+import formStyles from "../Styles/form.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux-toolkit/auth/authSlice.js";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
-    const loggedIn = useSelector(state => state.login.email)
-    const dispatch = useDispatch()
-    return (
-        <>
-            <header className={styles.header}>
-                <div className={styles.logo}>
-                    LOGO
-                </div>
-                <nav>
-                    {loggedIn ? <button
-                            onClick={() => dispatch(logout())}
-                            className={formStyles["logout-btn"]}>logout</button> :
-                        <button className={formStyles.button}>Register</button>}
-                </nav>
-            </header>
-        </>
-    )
-}
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  return (
+    <>
+      <header className={styles.header}>
+        <Link to={"/"} className={styles.logo}>
+          LOGO
+        </Link>
+        <nav className={styles.navbar}>
+          {user ? (
+            <>
+              <button
+              type="button"
+                onClick={() => dispatch(logout())}
+                className={formStyles["logout-btn"]}
+              >
+                logout
+              </button>
+              <Link to="/profile" className={styles.avatar}>
+                <img src={user.image} alt="avatar" />
+              </Link>
+            </>
+          ) : (
+            <Link to="/login" className={formStyles.button}>
+              login
+            </Link>
+          )}
+        </nav>
+      </header>
+    </>
+  );
+};
