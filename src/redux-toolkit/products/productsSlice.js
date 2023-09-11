@@ -35,7 +35,6 @@ export const getProducts = () => async (dispatch) => {
   try {
     dispatch(gettingProductsStart());
     const response = await axios.get("https://fakestoreapi.com/products");
-    console.log("done")
     dispatch(gettingProductsSuccess(response.data));
   } catch (error) {
     dispatch(gettingProductsFailure(error.message));

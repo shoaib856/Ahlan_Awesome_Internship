@@ -84,6 +84,8 @@ const Register = () => {
     }
   }, [user, navigate]);
 
+  
+
   return (
     <div className={styles.container}>
       <div className={styles["image-container"]}>

@@ -10,6 +10,7 @@ import Register from "./pages/Register.jsx";
 import Profile from "./pages/Profile.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import axios from "axios";
+import NotFound from "./pages/NotFound.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,10 @@ const router = createBrowserRouter([
       { index: true, element: <App /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
-      { path: "profile", element: <Profile /> },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
       {
         path: "product/:id",
         element: <ProductDetails />,
@@ -32,6 +36,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "*", element: <NotFound /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

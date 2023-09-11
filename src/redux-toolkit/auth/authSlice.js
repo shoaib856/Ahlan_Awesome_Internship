@@ -1,10 +1,10 @@
 // authSlice.js
 
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../api/axios";
 
 const initialState = {
-  user: JSON.parse(localStorage.getItem("userData")) || null,
+  user: JSON.parse(localStorage.getItem("user")) || null,
   isLoading: false,
   error: null,
 };
@@ -21,7 +21,7 @@ const authSlice = createSlice({
     loginSuccess(state, action) {
       state.isLoading = false;
       state.user = action.payload;
-      localStorage.setItem("userData", JSON.stringify(action.payload));
+      localStorage.setItem("user", JSON.stringify(state.user));
     },
 
     loginFailure(state, action) {
@@ -31,21 +31,25 @@ const authSlice = createSlice({
     logout(state) {
       state.user = null;
       state.error = null;
-      localStorage.removeItem("userData");
+      localStorage.removeItem("user");
+    },
+    updateToken(state, action) {
+      state.user.accessToken = action.payload;
     },
   },
 });
 
-export const { loginStart, loginSuccess, loginFailure, logout } =
+export const { loginStart, loginSuccess, loginFailure, logout, updateToken } =
   authSlice.actions;
 
 export const login = (credentials) => async (dispatch) => {
   try {
     dispatch(loginStart());
-    const response = await axios.post(
-      "https://dummyjson.com/auth/login",
-      credentials
-    );
+    const response = await axios.post("auth/login", credentials, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     dispatch(loginSuccess(response.data));
   } catch (error) {
     dispatch(loginFailure(error.message));
@@ -55,10 +59,7 @@ export const login = (credentials) => async (dispatch) => {
 export const register = (credentials) => async (dispatch) => {
   try {
     dispatch(loginStart());
-    const response = await axios.post(
-      "https://dummyjson.com/users/add",
-      credentials
-    );
+    const response = await axios.post("users/add", credentials);
     dispatch(loginSuccess(response.data));
   } catch (error) {
     dispatch(loginFailure(error.message));

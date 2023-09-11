@@ -21,13 +21,14 @@ const Login = () => {
       navigate("/profile");
     }
   }, [user, navigate]);
+  
 
   const fields = [
     {
       id: "username",
       label: "username",
       type: "text",
-      placeholder: "Enter your username",
+      placeholder: "username",
       fieldState: username,
       setField: setUsername,
     },
