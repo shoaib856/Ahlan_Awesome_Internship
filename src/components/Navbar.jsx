@@ -1,11 +1,11 @@
 import styles from "../Styles/Navbar.module.css";
 import formStyles from "../Styles/form.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../redux-toolkit/auth/authSlice.js";
+import { logout } from "../redux/auth/authSlice.js";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
-  const user = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.auth);
   const dispatch = useDispatch();
   return (
     <>

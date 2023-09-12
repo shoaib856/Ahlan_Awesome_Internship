@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "../Styles/form.module.css";
 import FormControl from "../components/FormControl.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../redux-toolkit/auth/authSlice";
+import { register } from "../redux/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {

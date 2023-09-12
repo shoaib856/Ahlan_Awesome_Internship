@@ -1,20 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import styles from "../Styles/App.module.css";
-import { getProducts } from "../redux-toolkit/products/productsSlice";
+import { getProducts } from "../redux/products/productsSlice";
 import { Link } from "react-router-dom";
 
 function App() {
-  const user = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.auth);
   const isLoading = useSelector((state) => state.products.isLoading);
   const products = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (user) {
-      console.log(user);
-    }
-  }, [user]);
 
   useEffect(() => {
     dispatch(getProducts());

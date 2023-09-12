@@ -2,7 +2,7 @@ import styles from "../Styles/form.module.css";
 import FormControl from "../components/FormControl.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { login } from "../redux-toolkit/auth/authSlice.js";
+import { login } from "../redux/auth/authSlice.js";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -11,10 +11,10 @@ const Login = () => {
   const error = useSelector((state) => state.auth.error);
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const user = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.auth);
 
   useEffect(() => {
     if (user) {
@@ -25,12 +25,12 @@ const Login = () => {
 
   const fields = [
     {
-      id: "username",
-      label: "username",
-      type: "text",
-      placeholder: "username",
-      fieldState: username,
-      setField: setUsername,
+      id: "email",
+      label: "email",
+      type: "email",
+      placeholder: "email@example.com",
+      fieldState: email,
+      setField: setEmail,
     },
     {
       id: "password",
@@ -89,7 +89,7 @@ const Login = () => {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                dispatch(login({ username, password }));
+                dispatch(login({ email, password }));
               }}
               disabled={isLoading}
               className={styles.button}
